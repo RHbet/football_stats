@@ -1,3 +1,11 @@
+def generate_seasons(start_2020, end_2024):
+    seasons = [3]
+    for year in range(start_year, end_year):
+        start = str(year)[-2:]
+        end = str(year + 1)[-2:]
+        seasons.append(start + end)
+    return seasons
+
 def calculate_poisson_match_outcomes(home_goals_expectation, away_goals_expectation):
     max_goals = 10
     home_probabilities = [poisson.pmf(i, home_goals_expectation) for i in range(0, max_goals+1)]
