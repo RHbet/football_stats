@@ -1,6 +1,11 @@
+import pandas as pd
+import numpy as np
+from scipy.stats import poisson
+from scipy.optimize import minimize
+
 def generate_seasons(start_2020, end_2024):
     seasons = [3]
-    for year in range(start_year, end_year):
+    for year in range(start_2020, end_2024):
         start = str(year)[-2:]
         end = str(year + 1)[-2:]
         seasons.append(start + end)
