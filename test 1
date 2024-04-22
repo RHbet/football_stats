@@ -1,0 +1,15 @@
+def calculate_poisson_match_outcomes(home_goals_expectation, away_goals_expectation):
+    max_goals = 10
+    home_probabilities = [poisson.pmf(i, home_goals_expectation) for i in range(0, max_goals+1)]
+    away_probabilities = [poisson.pmf(i, away_goals_expectation) for i in range(0, max_goals+1)]
+    
+    home_win_prob = sum(home_probabilities[i] * sum(away_probabilities[:i]) for i in range(1, max_goals+1))
+    draw_prob = sum(home_probabilities[i] * away_probabilities[i] for i in range(max_goals+1))
+    away_win_prob = sum(away_probabilities[i] * sum(home_probabilities[:i]) for i in range(1, max_goals+1))
+    
+    return [home_win_prob, draw_prob, away_win_prob]
+
+def calculate_ev_from_odds(bookmaker_odds, your_probability):
+    payout = bookmaker_odds
+    ev = (your_probability * payout) - 1
+    return ev
